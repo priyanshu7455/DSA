@@ -7,7 +7,7 @@ public:
         for(int i=1;i<si;i++){
             int coust=prices[i]-minp;
              maxp=max(maxp,coust);
-            minp=min(minp,prices[i]);
+            minp=min(minp,prices[i]);;
         }
         return maxp;
         
