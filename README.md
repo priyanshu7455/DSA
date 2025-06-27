@@ -6,5 +6,5 @@ I’m learning DSA to improve my problem-solving skills and prepare for coding i
 
 ---
 
-## 📂 Folder Structure
+
 
