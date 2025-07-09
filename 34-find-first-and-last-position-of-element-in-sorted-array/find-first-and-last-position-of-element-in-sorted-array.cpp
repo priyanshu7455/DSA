@@ -35,7 +35,7 @@ public:
     }
     vector<int> searchRange(vector<int>& nums, int target) {
         int lb = Lower(nums, target);
-        if (lb == nums.size() || nums[lb] != target)
+        if (lb == nums.size() || nums[lb] != target)/////like if lb is not in the range so it point to hipotaical index and now ||   chek the lb we find is that same target number ornot 
             return {-1, -1};
         return {lb, Upper(nums, target) - 1};
     }
