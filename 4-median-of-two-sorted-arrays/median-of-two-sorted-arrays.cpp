@@ -1,27 +1,58 @@
 class Solution {
 public:
-    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> ans;
+    double findMedianSortedArrays(vector<int>& a, vector<int>& b) {
+        int n1 = a.size(), n2 = b.size();
+        int n = n1 + n2; // total size
+        // required indices:
+        int ind2 = n / 2;
+        int ind1 = ind2 - 1;
+        int cnt = 0;
+        int ind1el = -1, ind2el = -1;
 
-        // Merge both arrays into ans
-        for (int i = 0; i < nums1.size(); i++) {
-            ans.push_back(nums1[i]);  // fixed here
+        // apply the merge step:
+        int i = 0, j = 0;
+        while (i < n1 && j < n2) {
+            if (a[i] < b[j]) {
+                if (cnt == ind1)
+                    ind1el = a[i];
+                if (cnt == ind2)
+                    ind2el = a[i];
+                cnt++;
+                i++;
+            } else {
+                if (cnt == ind1)
+                    ind1el = b[j];
+                if (cnt == ind2)
+                    ind2el = b[j];
+                cnt++;
+                j++;
+            }
         }
 
-        for (int i = 0; i < nums2.size(); i++) {
-            ans.push_back(nums2[i]);  // fixed here
+        // copy the left-out elements:
+        while (i < n1) {
+            if (cnt == ind1)
+                ind1el = a[i];
+            if (cnt == ind2)
+                ind2el = a[i];
+            cnt++;
+            i++;
+        }
+        while (j < n2) {
+            if (cnt == ind1)
+                ind1el = b[j];
+            if (cnt == ind2)
+                ind2el = b[j];
+            cnt++;
+            j++;
         }
 
-        // Sort the combined array
-        sort(ans.begin(), ans.end());
-
-        int n = ans.size();
-
-        // Find median
-        if (n % 2 == 0) {
-            return (ans[n / 2] + ans[n / 2 - 1]) / 2.0;
-        } else {
-            return ans[n / 2];
+        // Find the median:
+        if (n % 2 == 1) {
+            return (double)ind2el;
         }
+
+        return (double)((double)(ind1el + ind2el)) / 2.0;
     }
-};
+}
+;
