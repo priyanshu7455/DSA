@@ -20,7 +20,7 @@ public:
                 int first=st.top();st.pop();
                 st.push(first/second);//what value got pus in stact
             }else{
-                st.push(stoi(c));
+                st.push(stoi(c));//string to integer stoi
             }
         }
         return st.top();
