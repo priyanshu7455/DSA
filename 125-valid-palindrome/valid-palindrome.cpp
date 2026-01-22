@@ -1,29 +1,12 @@
 class Solution {
-    int k = 0;
 public:
     bool isPalindrome(string s) {
-        
-        string cleaned;
-        for (char c : s) {
-            if (isalnum(c)) {/////// clean the string 
-                cleaned += tolower(c);
-            }
+        int l = 0, r = s.size() - 1;
+        while (l < r) {
+            while (l < r && !isalnum(s[l])) l++;
+            while (l < r && !isalnum(s[r])) r--;
+            if (tolower(s[l++]) != tolower(s[r--])) return false;
         }
-
-        
-        return check(cleaned); // check string 
-    }
-
-    bool check(const string &s) {
-        if (k >= s.size() / 2) {
-            k = 0;
-            return true;
-        }
-        if (s[k] != s[s.size() - k - 1]) {
-        
-            return false;
-        }
-        k++;
-        return check(s);
+        return true;
     }
 };
