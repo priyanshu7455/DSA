@@ -23,9 +23,9 @@ public:
                     total+=rightmax-height[right];
                 }
                 right--;
+
             }
         }
         return total;
-
     }
 };
