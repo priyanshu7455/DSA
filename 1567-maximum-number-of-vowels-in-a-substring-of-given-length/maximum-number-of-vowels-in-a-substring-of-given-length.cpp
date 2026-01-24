@@ -7,7 +7,7 @@ public:
     int maxVowels(string s, int k) {
         int n=s.size();
         int count=0;
-        int firs=0;
+        
         for(int i=0;i<k;i++){
             if(isvowel(s[i])){
                 count++;
