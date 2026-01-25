@@ -6,12 +6,11 @@ public:
         for(int i=0;i<k;i++){
             sum+=nums[i];
         }
-        int maxi=sum;
+        int maxsum=sum;
         for(int i=k;i<n;i++){
-            sum+=nums[i];
-            sum-=nums[i-k];
-            maxi=max(maxi,sum);
+            sum=sum - nums[i-k]+nums[i];
+            maxsum=max(maxsum,sum);
         }
-        return (double)maxi/k;
+        return (double)maxsum/k;
     }
 };
