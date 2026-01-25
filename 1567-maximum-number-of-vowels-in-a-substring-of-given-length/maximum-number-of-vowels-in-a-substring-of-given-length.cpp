@@ -22,9 +22,12 @@ public:
             if(isvowel(s[i-k])){
                  count--;
             }
+            if(maxi==k){// this is means baby if = k ha so all vouvle ha ise jada kaya he hoga so exit ;
+                return k;
+            }
             maxi=max(maxi,count);
 
         }
         return maxi;
     }
-};
+}; 
