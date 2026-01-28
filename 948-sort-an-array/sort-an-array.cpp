@@ -1,35 +1,42 @@
 class Solution {
 public:
-    void merge(vector<int>& nums, int left, int mid, int right) {
-        vector<int> temp;
-        int i = left, j = mid + 1;
-
-        while (i <= mid && j <= right) {
-            if (nums[i] <= nums[j])
-                temp.push_back(nums[i++]);
-            else
-                temp.push_back(nums[j++]);
+    void merges(vector<int>& nums, int l, int r, int mid) {
+        vector<int> raj;
+        int left = l;
+        int right = mid + 1;
+        while (left <= mid && right <= r) {
+            if (nums[left] <= nums[right]) {
+                raj.push_back(nums[left]);
+                left++;
+            } else {
+                raj.push_back(nums[right]);
+                right++;
+            }
         }
-
-        while (i <= mid) temp.push_back(nums[i++]);
-        while (j <= right) temp.push_back(nums[j++]);
-
-        for (int k = 0; k < temp.size(); k++) {
-            nums[left + k] = temp[k];
+        while (left <= mid) {
+            raj.push_back(nums[left]);
+            left++;
+        }
+        while (right <= r) {
+            raj.push_back(nums[right]);
+            right++;
+        }
+        for (int i = l; i <= r; i++) {
+            nums[i] = raj[i - l];
         }
     }
 
-    void mergeSort(vector<int>& nums, int left, int right) {
-        if (left >= right) return;
-
-        int mid = left + (right - left) / 2;
-        mergeSort(nums, left, mid);
-        mergeSort(nums, mid + 1, right);
-        merge(nums, left, mid, right);
+    void mergeshort(vector<int>& nums, int l, int r) {
+        if (l >= r)
+            return;
+        int mid = l + (r - l) / 2;
+        mergeshort(nums, l, mid);
+        mergeshort(nums, mid + 1, r);
+        merges(nums, l, r, mid);
     }
-
     vector<int> sortArray(vector<int>& nums) {
-        mergeSort(nums, 0, nums.size() - 1);
+
+        mergeshort(nums, 0, nums.size() - 1);
         return nums;
     }
 };
