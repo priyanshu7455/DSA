@@ -17,12 +17,12 @@ public:
         ListNode* prev=NULL;
         ListNode* next=NULL;
         ListNode* temp=head;
+
         while(temp!=NULL){
             next=temp->next;
             temp->next=prev;
             prev=temp;
             temp=next;
-
         }
         return prev;
     }
